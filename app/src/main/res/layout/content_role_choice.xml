@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="#ffdab7"
+
+
+    tools:showIn="@layout/activity_role_choice"
+    tools:context="edu.scu.mapproject.RoleChoice">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I WANT A TUTOR"
+        android:id="@+id/btn_Student"
+        android:layout_marginTop="116dp"
+        android:width="230dp"
+        android:height="120dp"
+        android:textSize="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I AM A TUTOR"
+        android:id="@+id/btn_tutor"
+        android:width="230dp"
+        android:height="120dp"
+        android:textSize="22dp"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/btn_Student"
+        android:layout_alignStart="@+id/btn_Student" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Select your Role"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:layout_alignStart="@+id/btn_Student"
+        android:layout_marginTop="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignEnd="@+id/btn_Student" />
+
+</RelativeLayout>

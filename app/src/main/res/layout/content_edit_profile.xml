@@ -7,14 +7,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="?attr/actionBarSize"
     android:id="@+id/drawerLayout"
-    tools:context="edu.scu.mapproject.changePassword">
+    tools:context=".EditProfile"
+    android:background="#f1f0ee">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainContent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-
+        android:id="@+id/mainContent">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
@@ -23,113 +22,120 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context="edu.scu.levelup.EditProfile">
+            tools:context="edu.scu.levelup.EditProfile"
+            android:layout_gravity="center"
+            android:background="#f1f0ee">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="PinCode"
+                android:textStyle="bold"
+                android:id="@+id/textView3"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/textView25" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:id="@+id/update_PinCode"
+                android:layout_alignBottom="@+id/textView3"
+                android:digits="1234567890"
+                android:maxLength="5"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/textView21"
+                android:layout_alignParentTop="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Street Address"
-                android:id="@+id/textView12"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
+                android:id="@+id/textView21"
                 android:textStyle="bold"
-                />
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/update_StreetAdress"
-                android:layout_alignBottom="@+id/textView12"
-                android:layout_alignParentEnd="true"
                 android:digits="1,2,3,4,5,6,7,8,9,0, ,qwertzuiopasdfghjklyxcvbnm"
                 android:maxLength="30"
-                android:layout_toEndOf="@+id/textView12" />
+                android:layout_alignBottom="@+id/textView21"
+                android:layout_alignEnd="@+id/update_PinCode"
+                android:layout_toEndOf="@+id/textView21" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Pin Code"
-                android:id="@+id/textView13"
-                android:layout_below="@+id/textView12"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
+                android:text="City"
+                android:textStyle="bold"
+                android:id="@+id/textView22"
+                android:layout_alignBottom="@+id/update_City"
                 android:layout_alignParentStart="true" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/update_PinCode"
-                android:layout_marginTop="25dp"
-                android:layout_alignTop="@+id/textView12"
-                android:layout_alignEnd="@+id/update_StreetAdress"
-                android:digits="1234567890"
-                android:maxLength="5"
-                android:layout_toEndOf="@+id/textView12" />
+                android:id="@+id/update_City"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZqwertzuiopasdfghjklyxcvbnm"
+                android:layout_below="@+id/update_StreetAdress"
+                android:layout_alignStart="@+id/update_StreetAdress"
+                android:layout_alignEnd="@+id/update_PinCode" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="State"
+                android:textStyle="bold"
+                android:id="@+id/textView23"
+                android:layout_alignBottom="@+id/update_State"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/update_State"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZqwertzuiopasdfghjklyxcvbnm"
+                android:layout_below="@+id/update_City"
+                android:layout_alignEnd="@+id/update_PinCode"
+                android:layout_alignStart="@+id/update_City" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Phone Number"
-                android:id="@+id/textView14"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@+id/textView13"
+                android:textStyle="bold"
+                android:id="@+id/textView24"
+                android:layout_alignBottom="@+id/update_PhoneNumber"
                 android:layout_alignParentStart="true" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/update_PhoneNumber"
-                android:layout_alignBottom="@+id/textView14"
-                android:layout_alignParentEnd="true"
                 android:digits="1234567890"
                 android:maxLength="10"
-                android:layout_alignStart="@+id/update_PinCode" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Education"
-                android:id="@+id/textView15"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@+id/update_PhoneNumber"
-                android:layout_alignParentStart="true" />
+                android:layout_below="@+id/update_State"
+                android:layout_alignStart="@+id/update_State"
+                android:layout_alignEnd="@+id/update_State" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Expertise"
-                android:id="@+id/textView16"
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@+id/textView15"
-                android:layout_alignStart="@+id/textView15"
-                android:layout_alignEnd="@+id/update_PhoneNumber"/>
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/update_Education"
-                android:entries="@array/degree_list"
-                android:prompt="@string/degree_prompt"
-                android:layout_above="@+id/textView16"
-                android:layout_alignStart="@+id/update_Interest" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Description"
-                android:id="@+id/textView17"
-                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:id="@+id/textView25"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
 
@@ -139,17 +145,46 @@
                 android:id="@+id/update_Interest"
                 android:entries="@array/interest_list"
                 android:prompt="@string/interest_prompt"
-                android:layout_alignBottom="@+id/textView16"
-                android:layout_toEndOf="@+id/textView14" />
+                android:layout_below="@+id/update_PhoneNumber"
+                android:layout_alignStart="@+id/update_Confirm" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Education Level"
+                android:id="@+id/textView26"
+                android:textStyle="bold"
+                android:layout_below="@+id/textView25"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="15dp"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/update_Education"
+                android:entries="@array/degree_list"
+                android:prompt="@string/degree_prompt"
+                android:layout_below="@+id/textView25"
+                android:layout_alignStart="@+id/update_Interest" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Description"
+                android:textStyle="bold"
+                android:id="@+id/textView27"
+                android:layout_above="@+id/update_Description"
+                android:layout_alignParentStart="true" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/update_Description"
-                android:layout_below="@+id/textView17"
-                android:singleLine="true"
-                android:layout_alignStart="@+id/textView16"
-                android:layout_alignEnd="@+id/textView16" />
+                android:layout_above="@+id/update_Back"
+                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/update_PhoneNumber" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -157,7 +192,8 @@
                 android:text="BACK"
                 android:id="@+id/update_Back"
                 android:layout_alignParentBottom="true"
-                android:layout_toStartOf="@+id/update_Interest" />
+                android:layout_toEndOf="@+id/textView22"
+                android:layout_marginBottom="38dp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -165,46 +201,9 @@
                 android:text="CONFIRM"
                 android:id="@+id/update_Confirm"
                 android:layout_alignTop="@+id/update_Back"
-                android:layout_alignEnd="@+id/update_Description"
-                android:layout_marginEnd="50dp" />
+                android:layout_toEndOf="@+id/update_Back"
+                android:layout_marginStart="35dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="City"
-                android:id="@+id/textView19"
-                android:layout_marginTop="18dp"
-                android:layout_alignStart="@+id/update_Description"
-                android:layout_below="@+id/update_Description" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="State"
-                android:id="@+id/textView20"
-                android:layout_marginTop="18dp"
-                android:layout_below="@+id/textView19"
-                android:layout_alignStart="@+id/textView19" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/update_City"
-                android:layout_above="@+id/textView20"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZqwertzuiopasdfghjklyxcvbnm"
-                android:layout_alignEnd="@+id/update_Description"
-                android:layout_alignStart="@+id/update_State" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/update_State"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZqwertzuiopasdfghjklyxcvbnm"
-                android:layout_below="@+id/update_City"
-                android:layout_alignEnd="@+id/update_Description"
-                android:layout_toEndOf="@+id/textView13" />
         </RelativeLayout>
     </FrameLayout>
 
@@ -214,7 +213,7 @@
         android:id="@+id/drawerList"
         android:layout_gravity="left"
         android:divider="@null"
-        android:background="#ff8800"
+        android:background="#FFBDBCB9"
         android:paddingLeft="5dp"
         android:paddingTop="20dp"
         android:gravity="center"

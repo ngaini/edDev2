@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class CustomAdapter extends BaseAdapter {
     private Context context;
     String[] navigation_menu_item;
-    int[] navigation_menu_image = {R.drawable.ic_home_black_48dp, R.drawable.ic_account_box_black_48dp, R.drawable.ic_explore_black_48dp,R.drawable.ic_contact_phone_black_48dp, R.drawable.ic_map_black_48dp, R.drawable.ic_change_password_black_48dp, R.drawable.ic_exit_to_app_black_48dp};
+    int[] navigation_menu_image = {R.drawable.ic_home_black_48dp,  R.drawable.ic_explore_black_48dp,R.drawable.ic_contact_phone_black_48dp, R.drawable.ic_map_black_48dp, R.drawable.ic_change_password_black_48dp, R.drawable.ic_exit_to_app_black_48dp};
 
     public CustomAdapter(Context context) {
         this.context= context;

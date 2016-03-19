@@ -46,8 +46,8 @@ public class changePassword extends AppCompatActivity implements AdapterView.OnI
     private String userConfirmPassword;
     private int uRole;
     Firebase mref;
-    SharedPreferences pref;
     SharedPreferences.Editor editor;
+    SharedPreferences pref;
     private Firebase ref2;
     Query qref;
     Firebase userRef, userRef1;
@@ -212,9 +212,15 @@ public class changePassword extends AppCompatActivity implements AdapterView.OnI
 
         if(position == 0)
         {
-            Intent editProfilePage = new Intent(changePassword.this, StudentsListActivity.class);
-            startActivity(editProfilePage);
+            if(uRole == 1) {
+                Intent editProfilePage = new Intent(changePassword.this, StudentsListActivity.class);
+                startActivity(editProfilePage);
+            }else{
+                Intent editProfilePage = new Intent(changePassword.this, TutorsListActivity.class);
+                startActivity(editProfilePage);
+            }
         }
+
 
 
         if(position == 1)
@@ -223,19 +229,13 @@ public class changePassword extends AppCompatActivity implements AdapterView.OnI
             startActivity(editProfilePage);
         }
 
-        if(position == 2)
-        {
-            Intent discoverySettingsPage = new Intent(changePassword.this, DiscoverySettingsPage.class);
-            startActivity(discoverySettingsPage);
-        }
-
-        if(position == 5)
+        if(position == 4)
         {
             Intent changePasswordPage = new Intent(changePassword.this, changePassword.class);
             startActivity(changePasswordPage);
         }
 
-        if(position == 6) {
+        if(position == 5) {
 
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override

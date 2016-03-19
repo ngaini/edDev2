@@ -8,9 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="edu.scu.mapproject.Login"
-    tools:showIn="@layout/activity_login">
+
+    tools:context="edu.scu.levelup.Login"
+    tools:showIn="@layout/activity_login"
+    android:background="#f1f0ee">
+
     <EditText
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -69,6 +71,5 @@
         android:id="@+id/btn_NewUser"
         android:layout_alignTop="@+id/main_Login"
         android:layout_alignStart="@+id/login_header2" />
-
 
 </RelativeLayout>

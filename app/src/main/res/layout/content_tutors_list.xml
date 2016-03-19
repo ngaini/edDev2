@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/tutorActivity_studentList_listView"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:background="#f1f0ee">
 
         </ListView>
     </FrameLayout>
@@ -31,7 +32,7 @@
         android:id="@+id/tutorDrawerList"
         android:layout_gravity="left"
         android:divider="@null"
-        android:background="#ff8800"
+        android:background="#FFBDBCB9"
         android:paddingLeft="5dp"
         android:paddingTop="20dp"
         android:gravity="center"

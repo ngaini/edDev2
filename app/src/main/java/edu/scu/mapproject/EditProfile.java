@@ -5,8 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +25,20 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+import edu.scu.mapproject.CustomAdapter;
+import edu.scu.mapproject.DiscoverySettingsPage;
+import edu.scu.mapproject.Login;
+import edu.scu.mapproject.StudentsListActivity;
+import edu.scu.mapproject.TutorsListActivity;
+import edu.scu.mapproject.Users;
+import edu.scu.mapproject.changePassword;
+
+import static edu.scu.mapproject.R.id.toolbar;
+
 public class EditProfile extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private EditText streetAdrress;
@@ -36,7 +51,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
     private Spinner interest;
     private Spinner role;
     private Button confirm;
-    private double lat, lng;
+    private double latitude, longitude;
     private Button back;
     Firebase mref,href,xref, userRef;
     private String uEmailID1, uFullName;
@@ -55,11 +70,15 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
     private android.support.v7.app.ActionBarDrawerToggle drawerListner;
     private CustomAdapter myCustomAdapter;
     private String[] navOptions;
+    private String uStreet, uCity, uState, uPinCode;
+    Geocoder geocoder;
+    List<Address> addresses;
+    private String constructAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_drawer_test);
+        setContentView(R.layout.activity_drawer_test);
         setContentView(R.layout.activity_edit_profile);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -67,7 +86,6 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         pref = getApplicationContext().getSharedPreferences(preferName, 0);
         editor = pref.edit();
         sessionUserName = pref.getString(key_email, null);
-        Toast.makeText(getApplicationContext(), "Session User Name - "+sessionUserName, Toast.LENGTH_SHORT).show();
         streetAdrress = (EditText) findViewById(R.id.update_StreetAdress);
         pinCode = (EditText) findViewById(R.id.update_PinCode);
         phoneNumber = (EditText) findViewById(R.id.update_PhoneNumber);
@@ -79,10 +97,12 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         city = (EditText) findViewById(R.id.update_City);
         state = (EditText) findViewById(R.id.update_State);
         ref2 = new Firebase("https://scorching-inferno-7039.firebaseio.com/users/Student");
+
         DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         ListView list = (ListView)findViewById(R.id.drawerList);
         myCustomAdapter = new CustomAdapter(this);
         list.setAdapter(myCustomAdapter);
+        geocoder = new Geocoder(this, Locale.getDefault());
         navOptions = getResources().getStringArray(R.array.navOptions);
 
         //setting item lister for nav drawer item click
@@ -105,7 +125,6 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
         userRef = new Firebase("https://scorching-inferno-7039.firebaseio.com/users/Student/");
         queryRef = userRef.orderByChild("emailID").equalTo(sessionUserName);
-        Toast.makeText(getApplicationContext(), "Going inside the query"+sessionUserName, Toast.LENGTH_SHORT).show();
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -122,13 +141,24 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
                         userPassword = userData.getPassword();
                         userGender = userData.getGender();
                         userImage = userData.getImage();
-                        streetAdrress.setText("1234 Benton Street");
-                        pinCode.setText("95050");
-                        city.setText("Fremont");
-                        state.setText("CaliforniA");
                         phoneNumber.setText(userphoneNumber);
                         description.setText(userDescription);
+                        latitude = userData.getLat();
+                        longitude = userData.getLng();
+                        try {
+                            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                            uStreet = addresses.get(0).getAddressLine(0);
+                            uCity = addresses.get(0).getLocality();
+                            uState = addresses.get(0).getAdminArea();
+                            uPinCode = addresses.get(0).getPostalCode();
+                            streetAdrress.setText(uStreet);
+                            city.setText(uCity);
+                            state.setText(uState);
+                            pinCode.setText(uPinCode);
 
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }else
                 {
@@ -148,12 +178,24 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
                                 userEmailID = userData.getEmailID();
                                 userPassword = userData.getPassword();
                                 userGender = userData.getGender();
-                                streetAdrress.setText("1234 Benton Street");
-                                pinCode.setText("95050");
-                                city.setText("Fremont");
-                                state.setText("CaliforniA");
                                 phoneNumber.setText(userphoneNumber);
                                 description.setText(userDescription);
+                                latitude = userData.getLat();
+                                longitude = userData.getLng();
+                                try {
+                                    addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                                    uStreet = addresses.get(0).getAddressLine(0);
+                                    uCity = addresses.get(0).getLocality();
+                                    uState = addresses.get(0).getAdminArea();
+                                    uPinCode = addresses.get(0).getPostalCode();
+                                    streetAdrress.setText(uStreet);
+                                    city.setText(uCity);
+                                    state.setText(uState);
+                                    pinCode.setText(uPinCode);
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
 
@@ -176,6 +218,8 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
             public void onClick(View v) {
                 uAddress = streetAdrress.getText().toString().trim();
                 uPincode = pinCode.getText().toString().trim();
+                uCity = city.getText().toString().trim();
+                uState = state.getText().toString().trim();
                 uPhoneNumber = phoneNumber.getText().toString().trim();
                 uDescription = description.getText().toString().trim();
                 uID = userID.toString().trim();
@@ -186,13 +230,16 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
                 uGender = userGender.toString().trim();
                 uEducation = education.getSelectedItem().toString();
                 uInterests = interest.getSelectedItem().toString();
-                lat = 37.3502;
-                lng = -121.946224;
                 if (uAddress.equals("")) {
                     streetAdrress.setError("Field cannot be Empty!");
                 } else if (uPincode.equals("")) {
                     pinCode.setError("Field cannot be Empty!");
-                } else if (uPhoneNumber.equals("")) {
+                }else if (uCity.equals("")){
+                    city.setError("Field cannot be empty");
+                }else if(uState.equals("")){
+                    state.setError("Field cannot be empty");
+                }
+                else if (uPhoneNumber.equals("")) {
                     phoneNumber.setError("Field cannot be Empty!");
                 } else if (uDescription.equals("")) {
                     description.setError("Field cannot be Empty!");
@@ -204,12 +251,27 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
                     {
                         userRole = "Tutor";
                     }
+                    constructAddress = uAddress+" "+uCity+" "+uState+" "+uPincode;
+                    try {
+                        addresses = geocoder.getFromLocationName(constructAddress, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Address address = addresses.get(0);
+                    longitude = address.getLongitude();
+                    latitude = address.getLatitude();
                     mref = new Firebase("https://scorching-inferno-7039.firebaseio.com/users/"+userRole);
                     Firebase newUserRef = mref.child(uID);
-                    Users newUser = new Users(uID, uRole, uFullName, uAge, uEmailID, uPhoneNumber, uPassword, uEducation, uDescription, uGender, uInterests, lat, lng, userImage);
+                    Users newUser = new Users(uID, uRole, uFullName, uAge, uEmailID, uPhoneNumber, uPassword, uEducation, uDescription, uGender, uInterests, latitude, longitude, userImage);
                     newUserRef.setValue(newUser);
-                    Intent mainPage = new Intent(EditProfile.this, StudentsListActivity.class);
-                    startActivity(mainPage);
+                    if (uRole == 1) {
+                        Intent mainPage = new Intent(EditProfile.this, StudentsListActivity.class);
+                        startActivity(mainPage);
+                    }else
+                    {
+                        Intent mainPage = new Intent(EditProfile.this, TutorsListActivity.class);
+                        startActivity(mainPage);
+                    }
                     Toast.makeText(getApplicationContext(), "CHECK IF UPDATED", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -233,10 +295,17 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        selectTitle(navOptions[position]);
+
         if(position == 0)
         {
-            Intent editProfilePage = new Intent(EditProfile.this, StudentsListActivity.class);
-            startActivity(editProfilePage);
+            if(uRole == 1) {
+                Intent editProfilePage = new Intent(EditProfile.this, StudentsListActivity.class);
+                startActivity(editProfilePage);
+            }else{
+                Intent editProfilePage = new Intent(EditProfile.this, TutorsListActivity.class);
+                startActivity(editProfilePage);
+            }
         }
 
 
@@ -286,4 +355,14 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
 
     }
+
+    private void selectTitle(String navOption) {
+        //to change the nave bar name
+        getSupportActionBar().setTitle(navOption);
+    }
+
+//    public static void setAddress(double latitude, double longitude)
+//    {
+//
+//    }
 }

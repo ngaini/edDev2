@@ -20,10 +20,6 @@ public class UserSessionManager {
     private static final String isUserLogin = "isUserLogin";
     public static final String key_name = "name";
     public static final String key_email = "email";
-//    public static final String key_lat = "lattitude";
-//    public static final String key_lng = "longitude";
-//    public static final String key_role = "userRole";
-//    public static final String key_userID = "userID";
 
     public UserSessionManager(Context context)
     {
@@ -34,12 +30,9 @@ public class UserSessionManager {
 
     public void createUserLoginSession(String name, String email)
     {
-//        editor.putBoolean(isUserLogin, true);
+        editor.putBoolean(isUserLogin, true);
         editor.putString(key_name, name);
         editor.putString(key_email, email);
-//        editor.putInt(key_role, userRole);
-//        editor.putString(key_userID, userID);
-
         editor.commit();
     }
 

@@ -21,14 +21,9 @@ public class Users {
     private String emailID;
     private String gender;
     private String interests;
-
     private String image;
-
     private double lat;
     private double lng;
-
-    //    private String address;
-//    private String pincode;
     private String userID;
 
 
@@ -81,18 +76,11 @@ public class Users {
         return this.phoneNumber;
     }
 
-
     public String getPassword()
     {
         return this.password;
     }
 
-
-//    public String toString() { return "User{handle='"+handle+“', name='"+name+"', stackId="+stackId+"\’}”; }
-
-
-    //    @Override
-//    public String toString() { return "User{fullName='"+fullName+"', name='"+phoneNumber+"', stackId='"+age+"'}"; }
     public String getEmailID()
     {
         return this.emailID;
@@ -121,16 +109,6 @@ public class Users {
     {
         return this.interests;
     }
-
-//    public String getAddress(){
-//        return this.address;
-//    }
-//
-//    public String getPincode()
-//    {
-//        return this.pincode;
-//    }
-
 
     public String getUserID()
     {
@@ -173,14 +151,6 @@ public class Users {
         this.interests = interests;
     }
 
-//    public void setPincode(String pincode) {
-//        this.pincode = pincode;
-//    }
-//
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
-
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -202,23 +172,4 @@ public class Users {
 
         this.lat = lat;
     }
-
-//    public void setIdOfInterestedParty(int idOfInterestedParty) {
-//        this.idOfInterestedParty = idOfInterestedParty;
-//    }
-//
-//    public void setList(int list) {
-//
-//        this.list = list;
-//    }
-//
-//    public int getList() {
-//
-//        return list;
-//    }
-//
-//    public int getIdOfInterestedParty() {
-//
-//        return idOfInterestedParty;
-//    }
 }

@@ -86,12 +86,12 @@ public class SignUpPage3 extends Activity {
         {
             userStatement = "Student";
             newUserRef = mref.child("users").child(userStatement).child(userID);
-            Toast.makeText(SignUpPage3.this, "url is - "+newUserRef, Toast.LENGTH_LONG).show();
+            //Toast.makeText(SignUpPage3.this, "url is - "+newUserRef, Toast.LENGTH_LONG).show();
 
         }else{
             userStatement = "Tutor";
             newUserRef = mref.child("users").child(userStatement).child(userID);
-            Toast.makeText(SignUpPage3.this, "url is - "+newUserRef, Toast.LENGTH_LONG).show();
+            //Toast.makeText(SignUpPage3.this, "url is - "+newUserRef, Toast.LENGTH_LONG).show();
         }
 
         uploadPhoto.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +129,8 @@ public class SignUpPage3 extends Activity {
                         public void onSuccess(Map<String, Object> stringObjectMap) {
                             Users newUser = new Users(userID, uRole, uFullName, uAge, uEmailID, uPhoneNumber, uPassword, uDegreeList, uDescription, uGender, uExpertiseList, lat1, lng1, uImage);
                             newUserRef.setValue(newUser);
-                            session.createUserLoginSession("session stored", uname);
+                            newUserRef.unauth();
+//                        session.createUserLoginSession("session stored", uname);
                             Toast.makeText(SignUpPage3.this, "THANK YOU for Signup. Please Login to Start"+uname, Toast.LENGTH_LONG).show();
                             Intent mainPage = new Intent(SignUpPage3.this, Login.class);
                             startActivity(mainPage);

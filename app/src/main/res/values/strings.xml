@@ -44,7 +44,6 @@
     <string-array name="navOptions">
         <item>Home</item>
         <item>Edit Profile</item>
-        <item>Dicovery Settings</item>
         <item>Contact Tutor</item>
         <item>Map View</item>
         <item>Change Password</item>

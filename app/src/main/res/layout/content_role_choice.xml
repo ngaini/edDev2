@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="#ffdab7"
+    android:background="#f1f0ee"
 
 
     tools:showIn="@layout/activity_role_choice"

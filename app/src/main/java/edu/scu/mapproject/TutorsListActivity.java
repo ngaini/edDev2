@@ -54,6 +54,7 @@ public class TutorsListActivity extends AppCompatActivity implements AdapterView
     private String sessionUserName;
     private static Firebase userRef1;
     private static Query userQueryRef;
+    int appUserRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class TutorsListActivity extends AppCompatActivity implements AdapterView
         getSupportActionBar().setTitle("Tutor");
 
 
-        sessionUserName ="t@t.com";
+        //sessionUserName ="t@t.com";
         pref = getApplicationContext().getSharedPreferences(preferName, 0);
         editor = pref.edit();
         sessionUserName = pref.getString(key_email, null);
@@ -124,7 +125,6 @@ public class TutorsListActivity extends AppCompatActivity implements AdapterView
         userQueryRef = userRef1.orderByChild("emailID").equalTo(sessionUserName);
         userQueryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             String appUserName, appUserID,appUserInterest;
-            int appUserRole;
             double appUserLat,appUserLng;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -213,25 +213,25 @@ public class TutorsListActivity extends AppCompatActivity implements AdapterView
         ref1 = new Firebase("https://scorching-inferno-7039.firebaseio.com/users/Tutor");
         selectTitle(navOptions[position]);
 
+        if(position == 0)
+        {
+            Intent editProfilePage = new Intent(TutorsListActivity.this, TutorsListActivity.class);
+            startActivity(editProfilePage);
+        }
+
         if(position == 1)
         {
             Intent editProfilePage = new Intent(TutorsListActivity.this, EditProfile.class);
             startActivity(editProfilePage);
         }
 
-        if(position == 2)
-        {
-            Intent discoverySettingsPage = new Intent(TutorsListActivity.this, DiscoverySettingsPage.class);
-            startActivity(discoverySettingsPage);
-        }
-
-        if(position == 5)
+        if(position == 4)
         {
             Intent changePasswordPage = new Intent(TutorsListActivity.this, changePassword.class);
             startActivity(changePasswordPage);
         }
 
-        if(position == 6) {
+        if(position == 5) {
 
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override

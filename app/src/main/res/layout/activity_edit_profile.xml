@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/drawer_toolbar"
-    tools:context="edu.scu.mapproject.changePassword">
+    tools:context="edu.scu.levelup.EditProfile">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

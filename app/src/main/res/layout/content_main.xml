@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
     tools:showIn="@layout/activity_main"
-    android:background="#ffdab7"
+    android:background="#f1f0ee"
     tools:context="edu.scu.mapproject.MainActivity">
 
     <EditText
@@ -92,11 +92,10 @@
         android:layout_height="wrap_content"
         android:text="BACK"
         android:id="@+id/main_Back"
-        android:layout_below="@+id/main_ConfirmPassword"
-        android:layout_marginTop="14dp"
-        android:layout_toStartOf="@+id/main_Next"
 
-    android:onClick="moveToDetailsActivity"/>
+        android:onClick="moveToDetailsActivity"
+        android:layout_below="@+id/main_ConfirmPassword"
+        android:layout_toStartOf="@+id/txt_userrole" />
 
     <Button
         android:layout_width="wrap_content"
@@ -105,7 +104,7 @@
         android:id="@+id/main_Next"
         android:onClick="moveToLoginActivity"
         android:layout_alignTop="@+id/main_Back"
-        android:layout_alignEnd="@+id/main_ConfirmPassword" />
+        android:layout_toEndOf="@+id/main_Back" />
 
     <TextView
         android:layout_width="wrap_content"

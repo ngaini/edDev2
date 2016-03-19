@@ -442,19 +442,13 @@ public class StudentsListActivity extends AppCompatActivity implements AdapterVi
             startActivity(editProfilePage);
         }
 
-        if(position == 2)
-        {
-            Intent discoverySettingsPage = new Intent(StudentsListActivity.this, DiscoverySettingsPage.class);
-            startActivity(discoverySettingsPage);
-        }
-
-        if(position == 5)
+        if(position == 4)
         {
             Intent changePasswordPage = new Intent(StudentsListActivity.this, changePassword.class);
             startActivity(changePasswordPage);
         }
 
-        if(position == 6) {
+        if(position == 5) {
 
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override
